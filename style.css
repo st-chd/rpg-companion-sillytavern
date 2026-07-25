@@ -28,8 +28,8 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
 /* Main Panel Container - Fills available margin space */
 .rpg-panel {
     position: fixed;
-    top: var(--topBarBlockSize);
-    bottom: 0;
+    top: 0;
+    height : 100dvh;
     background: var(--rpg-bg);
     box-shadow: 0 0 20px var(--rpg-shadow);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
