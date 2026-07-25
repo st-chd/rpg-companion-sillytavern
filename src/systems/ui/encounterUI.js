@@ -553,6 +553,7 @@ export class EncounterModal {
         return new Promise((resolve) => {
             const targetModal = document.createElement('div');
             targetModal.className = 'rpg-target-selection-overlay';
+            targetModal.setAttribute('data-theme', extensionSettings.theme || 'default');
 
             let targetOptions = '';
 

@@ -12,6 +12,7 @@ import { repairJSON } from '../../utils/jsonRepair.js';
 import { isPresentCharactersEnabled } from '../../utils/presentCharacters.js';
 import { buildInventorySummary, generateTrackerInstructions, generateTrackerExample } from './promptBuilder.js';
 import { applyLocks } from './lockManager.js';
+import { i18n } from '../../core/i18n.js';
 
 /**
  * Gets character information from the current chat
@@ -304,6 +305,9 @@ export async function buildEncounterInitPrompt() {
     initInstruction += `  - "single-target": Can only target one character (enemy or ally)\n`;
     initInstruction += `  - "AoE": Area of Effect - targets all enemies, but some AoE attacks (like storms, explosions) can also harm allies if the attack is indiscriminate\n`;
     initInstruction += `  - "both": Player can choose to target a single enemy OR use as AoE\n`;
+    if (i18n.currentLanguage === 'kr') {
+        initInstruction += `- IMPORTANT: Write all "name" fields (attacks, skills, statuses, enemy names, etc.) in Korean.\n`;
+    }
     initInstruction += `- For items array: Include quantities using format "Item Name xN" (e.g., "Health Potion x3", "Bomb x1")\n`;
     initInstruction += `  - If only one item exists, you can use "Item Name x1" or just "Item Name"\n`;
     initInstruction += `  - Items will be consumed when used - the quantity will decrease in future turns\n`;
@@ -534,6 +538,9 @@ export async function buildCombatActionPrompt(action, combatStats) {
 
     stateMessage += `\n${userName}'s Action: ${action}\n\n`;
     stateMessage += `Respond with the exact JSON object as below, containing ONLY these specified values. Remember to consider the user's party and their moves. DO NOT regenerate character descriptions, sprites, or environment.\n\n`;
+    if (i18n.currentLanguage === 'kr') {
+        stateMessage += `- IMPORTANT: All new attack/skill/status names must be written in Korean.\n`;
+    }
     stateMessage += `IMPORTANT - Update ${userName}'s attacks and items arrays based on what happens in combat:\n`;
     stateMessage += `- ${userName}'s action is already specified above - do NOT regenerate it. Only update ${userName}'s attacks/items arrays if their action consumed resources (used item, lost ability, etc.).\n`;
     stateMessage += `- If they use an item, decrement its quantity ("Health Potion x3" becomes "Health Potion x2"). If quantity reaches 0, remove the item entirely.\n`;
@@ -541,7 +548,11 @@ export async function buildCombatActionPrompt(action, combatStats) {
     stateMessage += `  Examples: Disarmed → remove weapon attacks. Bound → remove all attacks or set to []. Freed → restore attacks.\n`;
     stateMessage += `- If they pick up a weapon/item during combat, add it to their items or attacks array.\n`;
     stateMessage += `- If environmental changes enable new actions (near water → "Splash Attack"), add them. If they disable actions (fire goes out → remove "Ignite"), remove them.\n`;
-    stateMessage += `- Status effects should persist and decrease duration each turn. Remove statuses when duration reaches 0.\n\n`;
+    stateMessage += `- Status effects should persist and decrease duration each turn. Remove statuses when duration reaches 0.\n`;
+    if (i18n.currentLanguage === 'kr') {
+        stateMessage += `- IMPORTANT: Write all new/changed "name" fields (attacks, skills, statuses, enemy names) in Korean.\n`;
+    }
+    stateMessage += `\n`;
     stateMessage += `FORMAT:\n`;
     stateMessage += `{\n`;
     stateMessage += `  "combatStats": {\n`;
