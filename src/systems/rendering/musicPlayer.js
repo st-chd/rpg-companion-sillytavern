@@ -77,8 +77,9 @@ export function renderMusicPlayer(container) {
     }
 
     // Create the mini music player widget
+    const theme = extensionSettings.theme;
     const musicPlayerHtml = `
-        <div id="rpg-chat-music-player" class="rpg-music-widget">
+        <div id="rpg-chat-music-player" class="rpg-music-widget" data-theme="${theme}">
             <div class="rpg-music-widget-content">
                 <div class="rpg-music-widget-icon">
                     <i class="fa-brands fa-spotify"></i>

@@ -1129,8 +1129,6 @@ body:has(.rpg-panel[data-theme="cyberpunk"]) .rpg-strip-widget {
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
     --rpg-shadow: rgba(255,255,255,0);
-    --rpg-light85a: rgba(255,255,255,0.85);
-    --rpg-light50a: rgba(255,255,255,0.5);
 }
 
 #rpg-thought-panel[data-theme="Simple_Light"],
@@ -1143,8 +1141,6 @@ body:has(.rpg-panel[data-theme="cyberpunk"]) .rpg-strip-widget {
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
     --rpg-shadow: rgba(255,255,255,0);
-    --rpg-light85a: rgba(255,255,255,0.85);
-    --rpg-light50a: rgba(255,255,255,0.5);
 }
 
 /* 설정 팝업 콘텐츠 */
@@ -1175,7 +1171,7 @@ body:has(.rpg-panel[data-theme="cyberpunk"]) .rpg-strip-widget {
 }
 /* 패널 - 스탯 배경 */
 .rpg-panel[data-theme="Simple_Light"] .rpg-stat-fill {
-    background: var(--rpg-light85a) !important;
+    background: rgba(255,255,255,0.85) !important;
 }
 
 /* 메뉴 버튼 */
@@ -1192,7 +1188,9 @@ body[data-theme="Simple_Light"] .menu_button {
 .rpg-panel[data-theme="Simple_Light"] .fa-solid,
 .rpg-panel[data-theme="Simple_Light"] .fa-regular,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .fa-solid,
-#rpg-tracker-editor-popup[data-theme="Simple_Light"] .fa-regular {
+#rpg-tracker-editor-popup[data-theme="Simple_Light"] .fa-regular,
+#rpg-dice-popup[data-theme="Simple_Light"] .fa-solid,
+#rpg-dice-popup[data-theme="Simple_Light"] .fa-regular {
     color: inherit !important;
 }
 
@@ -1246,7 +1244,7 @@ body[data-theme="Simple_Light"] .menu_button {
 
 /* 콘텐츠 박스 */
 .rpg-panel[data-theme="Simple_Light"] .rpg-content-box {
-    background: var(--rpg-light50a);
+    background: rgba(255,255,255,0.5);
     box-shadow: none;
     border: 2px solid var(--SmartThemeBorderColor);
 }
@@ -1276,7 +1274,7 @@ body[data-theme="Simple_Light"] .menu_button {
 }
 
 #rpg-thought-panel[data-theme="Simple_Light"] .rpg-thought-item {
-    background: var(--white50a);
+    background: rgba(255,255,255,0.5);
 }
 
 /* 생각 상자 그림자 제거 */
@@ -1440,7 +1438,7 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 .rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-popup-content {
     background: var(--SmartThemeBlurTintColor);
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: var(--SmartThemeShadowColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
@@ -1456,6 +1454,17 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
     color: var(--rpg-text) !important;
 }
 
+/* 주사위 팝업 버튼들 */
+#rpg-dice-popup[data-theme="Simple_Light"] .rpg-btn-icon,
+#rpg-dice-popup[data-theme="Simple_Light"] .rpg-btn-primary {
+    background: var(--rpg-accent);
+    color: var(--rpg-text);
+}
+/* 주사위 팝업 - 굴리는 중... */
+#rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-rolling-text {
+    animation: none;
+}
+
 /* 반투명 배경 위젯 모음 */
 .rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-selector-container,
 .rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-result,
@@ -1465,28 +1474,30 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 #rpg-companion-panel[data-theme="Simple_Light"] #rpg-info-box,
 #rpg-companion-panel[data-theme="Simple_Light"] .rpg-dashboard-widget,
 #rpg-companion-panel[data-theme="Simple_Light"] .rpg-notebook-header {
-    background: var(--rpg-light50a);
-}
-
-/* 주사위 저장 버튼 */
-.rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-save-btn {
-    box-shadow: 0 4px 12px var(--SmartThemeShadowColor);
+    background: rgba(255,255,255,0.50);
 }
 
 /* 팝업 배경 오버레이 */
-#rpg-settings-popup[data-theme="Simple_Light"]::before,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"]::before,
-#rpg-prompts-editor-popup[data-theme="Simple_Light"]::before {
-    background: var(--rpg-light85a);
+#rpg-prompts-editor-popup[data-theme="Simple_Light"]::before,
+#rpg-settings-popup[data-theme="Simple_Light"]::before {
+    background: rgba(255,255,255,0.85);
 }
 
-/* 프롬프트 편집 팝업 */
+/* 프롬프트 편집 팝업 - 헤더 */
 #rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-header,
-#rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-content,
 #rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-footer,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-header,
+#rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-footer,
+#rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-popup-header, {
+    background: var(--rpg-accent);
+    border-color: var(--rpg-border);
+}
+
+/* 프롬프트 편집 팝업 - 바디 */
+#rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-content,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-preset-management,
-#rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-footer {
+#rpg-settings-popup[data-theme="Simple_Light"] .rpg-settings-popup-body {
     background: var(--rpg-bg);
     border-color: var(--rpg-border);
 }
@@ -1497,22 +1508,27 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
     border-color: var(--rpg-border);
 }
 
+/* 인카운터 - 헤더 */
+.rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-header {
+    background: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, white);
+    border-bottom-color: var(--SmartThemeBorderColor);
+}
+
 .rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-container {
     background: var(--SmartThemeBlurTintColor);
     border: 2px solid var(--SmartThemeBorderColor);
     box-shadow: none;
 }
 
-/* 인카운터 - 헤더 */
-.rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-header {
-    background: var(--SmartThemeBlurTintColor);
-    border-bottom-color: var(--SmartThemeBorderColor);
-}
-
     .rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-header h2 {
         color: var(--SmartThemeBodyColor);
         text-shadow: 0 0 20px #ff006e, 0 0 40px #8b00ff;
     }
+
+/* 인카운터 - 전투 종료 버튼 */
+#rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-conclude-btn {
+    background: rgba(255,255,255,0.85);
+}
 
 /* 인카운터 - 닫기 버튼 */
 .rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-close-btn {
@@ -1552,6 +1568,12 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
     background: linear-gradient(to right, #00fff9, #8b00ff);
 }
 
+/* 인카운터 - 이모지, 전투 로그 */
+.rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-status,
+.rpg-encounter-modal[data-theme="Simple_Light"] #rpg-encounter-log {
+    background: rgba(255,255,255,0.5);
+}
+
 /* 인카운터 - 행동 버튼 */
 .rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-action-btn {
     background: var(--SmartThemeBlurTintColor);
@@ -1560,8 +1582,8 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 }
 
     .rpg-encounter-modal[data-theme="Simple_Light"] .rpg-encounter-action-btn:hover:not(:disabled) {
-        background: var(--SmartThemeBlurTintColor);
-        box-shadow: 0 0 20px var(--rpg-shadow);
+        background: color-mix(in srgb, var(--SmartThemeBorderColor) 30%, transparent);
+        box-shadow: none;
     }
 
 /* 인카운터 - 로딩 */
@@ -1592,7 +1614,6 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 
     .rpg-encounter-modal[data-theme="Simple_Light"] #rpg-encounter-custom-input:focus {
         border-color: var(--rpg-highlight);
-        box-shadow: 0 0 15px var(--rpg-shadow);
     }
 
 /* 대상 선택 체력바 */
@@ -1602,13 +1623,33 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 
 /* 음악 위젯 */
 .rpg-panel[data-theme="Simple_Light"] ~ .rpg-music-widget .rpg-music-widget-content,
-body[data-theme="Simple_Light"] .rpg-music-widget-content {
-    background: linear-gradient(135deg, #8b00ff 0%, #6a00cc 50%, #5000aa 100%);
+body[data-theme="Simple_Light"] .rpg-music-widget-content,
+.rpg-music-widget[data-theme="Simple_Light"] .rpg-music-widget-content {
+    background: rgba(255,255,255,0.5);
+}
+
+.rpg-music-widget[data-theme="Simple_Light"] .rpg-music-widget-play {
+    background: var(--SmartThemeBlurTintColor);
+    color: var(--SmartThemeQuoteColor);
+    box-shadow: none;
+    border: 1px solid var(--SmartThemeBorderColor);
+}
+
+.rpg-music-widget[data-theme="Simple_Light"] .rpg-music-widget-close,
+.rpg-music-widget[data-theme="Simple_Light"] .rpg-music-widget-icon {
+    background: rgba(255,255,255,0.5);
 }
 
 .rpg-panel[data-theme="Simple_Light"] ~ .rpg-music-widget .rpg-music-widget-play,
 body[data-theme="Simple_Light"] .rpg-music-widget-play {
     color: #8b00ff;
+}
+
+.rpg-music-widget[data-theme="Simple_Light"] .rpg-music-widget-play {
+    background: var(--SmartThemeBlurTintColor);
+    color: var(--SmartThemeQuoteColor);
+    box-shadow: none;
+    border: 1px solid var(--SmartThemeBorderColor);
 }
 
 /* 플로팅 위젯 */
@@ -1634,6 +1675,586 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-strip-widget {
     border-color: var(--rpg-border);
     color: var(--rpg-text);
 }
+
+/* 등장인물 */
+#rpg-alt-present-characters[data-theme="Simple_Light"] {
+    background: color-mix(in srgb, var(--rpg-bg) 80%, white);
+}
+
+    /* 등장인물 - 사진 */
+    #rpg-alt-present-characters[data-theme="Simple_Light"] .rpg-alt-present-character__portrait {
+        box-shadow: none;
+    }
+
+/* ============================================================
+   RPG Companion Theme - Simple_Dark
+   ============================================================ */
+
+/* 기본 설정 */
+.rpg-panel[data-theme="Simple_Dark"] {
+    --rpg-bg: var(--SmartThemeBlurTintColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-text: var(--SmartThemeBodyColor);
+    --rpg-highlight: var(--SmartThemeQuoteColor);
+    --rpg-border: var(--SmartThemeBorderColor);
+    --rpg-shadow: rgba(0,0,0,0);
+}
+
+#rpg-thought-panel[data-theme="Simple_Dark"],
+#rpg-thought-icon[data-theme="Simple_Dark"],
+#rpg-alt-present-characters[data-theme="Simple_Dark"],
+.rpg-mobile-toggle[data-theme="Simple_Dark"] {
+    --rpg-bg: var(--SmartThemeBlurTintColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-text: var(--SmartThemeBodyColor);
+    --rpg-highlight: var(--SmartThemeQuoteColor);
+    --rpg-border: var(--SmartThemeBorderColor);
+    --rpg-shadow: rgba(0,0,0,0);
+}
+
+/* 설정 팝업 콘텐츠 */
+#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content {
+    --rpg-bg: var(--SmartThemeBlurTintColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-text: var(--SmartThemeBodyColor);
+    --rpg-highlight: var(--SmartThemeQuoteColor);
+    --rpg-border: var(--SmartThemeBorderColor);
+    background: rgba(0,0,0,0.2);
+    color: var(--SmartThemeBodyColor);
+}
+
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content {
+    --rpg-bg: var(--SmartThemeBlurTintColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-text: var(--SmartThemeBodyColor);
+    --rpg-highlight: var(--SmartThemeQuoteColor);
+    --rpg-border: var(--SmartThemeBorderColor);
+    background: rgba(0,0,0,0.2);
+    color: var(--SmartThemeBodyColor);
+}
+
+/* 패널 - 스탯 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-stat-bar {
+    background: var(--rpg-highlight) !important;
+    box-shadow: none;
+}
+/* 패널 - 스탯 배경 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-stat-fill {
+    background: rgba(0,0,0,0.85) !important;
+}
+
+/* 메뉴 버튼 */
+body[data-theme="Simple_Dark"] .menu_button {
+    color: inherit !important;
+}
+
+/* 패널 접기 버튼 */
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-collapse-toggle:hover {
+    box-shadow: none;
+}
+
+/* 아이콘 색상 */
+.rpg-panel[data-theme="Simple_Dark"] .fa-solid,
+.rpg-panel[data-theme="Simple_Dark"] .fa-regular,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .fa-solid,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .fa-regular,
+#rpg-dice-popup[data-theme="Simple_Dark"] .fa-solid,
+#rpg-dice-popup[data-theme="Simple_Dark"] .fa-regular {
+    color: inherit !important;
+}
+
+/* 체크박스 */
+.rpg-panel[data-theme="Simple_Dark"] .checkbox_label input[type="checkbox"],
+.rpg-settings-popup[data-theme="Simple_Dark"] .checkbox_label input[type="checkbox"] {
+    accent-color: var(--rpg-highlight) !important;
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .checkbox_label input[type="checkbox"]:checked,
+    .rpg-settings-popup[data-theme="Simple_Dark"] .checkbox_label input[type="checkbox"]:checked {
+        background-color: var(--rpg-highlight) !important;
+    }
+
+/* 라디오 버튼 */
+.rpg-panel[data-theme="Simple_Dark"] .checkbox_label input[type="radio"],
+.rpg-settings-popup[data-theme="Simple_Dark"] .checkbox_label input[type="radio"] {
+    accent-color: var(--rpg-highlight) !important;
+}
+
+/* 설정 팝업 라디오 버튼 */
+.rpg-settings-popup[data-theme="Simple_Dark"] input[type="radio"],
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] input[type="radio"] {
+    accent-color: var(--rpg-highlight) !important;
+    color-scheme: normal;
+    background-color: transparent !important;
+}
+
+    .rpg-settings-popup[data-theme="Simple_Dark"] input[type="radio"]:checked,
+    #rpg-tracker-editor-popup[data-theme="Simple_Dark"] input[type="radio"]:checked {
+        background-color: var(--rpg-highlight) !important;
+    }
+
+/* 트래커 에디터 체크박스 */
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] input[type="checkbox"] {
+    accent-color: var(--rpg-highlight) !important;
+}
+
+    #rpg-tracker-editor-popup[data-theme="Simple_Dark"] input[type="checkbox"]:checked {
+        background-color: var(--rpg-highlight) !important;
+    }
+
+/* 기타 체크박스 */
+.rpg-panel[data-theme="Simple_Dark"] input[type="checkbox"]:not(.checkbox_label input[type="checkbox"]) {
+    accent-color: var(--rpg-highlight) !important;
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] input[type="checkbox"]:not(.checkbox_label input[type="checkbox"]):checked {
+        background-color: var(--rpg-highlight) !important;
+    }
+
+/* 콘텐츠 박스 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-content-box {
+    background: rgba(0,0,0,0.5);
+    box-shadow: none;
+    border: 2px solid var(--SmartThemeBorderColor);
+}
+
+/* 헤더 텍스트 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-panel-header h3,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-stats-title,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-info-header,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-thoughts-header {
+    text-shadow: none;
+}
+
+/* 버튼 그림자 제거 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-manual-update-btn,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-btn-settings {
+    box-shadow: none;
+}
+
+/* 구분선 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-divider {
+    background: linear-gradient(to right, transparent, #8b00ff, #ff006e, #8b00ff, transparent);
+}
+
+/* 생각 상자 배경 - 죽은 코드 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-thoughts-content::before {
+    background: color-mix(var(--rpg-highlight) 40%, var(--rpg-bg));
+}
+
+#rpg-thought-panel[data-theme="Simple_Dark"] .rpg-thought-item {
+    background: rgba(0,0,0,0.5);
+}
+
+/* 생각 상자 그림자 제거 */
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-thoughts-content {
+    box-shadow: none;
+}
+
+body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
+    background: color-mix(var(--SmartThemeQuoteColor) 10%, transparent);
+}
+
+/* 탭 내비게이션 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-tabs-nav {
+    border-bottom-color: var(--rpg-border);
+}
+
+/* 탭 버튼 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-tab-btn {
+    background: var(--rpg-accent);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-tab-btn:hover {
+        background: var(--rpg-highlight);
+        border-color: var(--rpg-highlight);
+    }
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-tab-btn.active {
+        background: var(--rpg-highlight);
+        border-color: var(--rpg-highlight);
+        color: var(--rpg-bg);
+    }
+
+/* 인벤토리 서브탭 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-subtabs {
+    border-bottom-color: var(--rpg-border);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-subtab {
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-subtab:hover {
+        border-color: var(--rpg-highlight);
+        color: var(--rpg-highlight);
+    }
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-subtab.active {
+        border-color: var(--rpg-highlight);
+        color: var(--rpg-highlight);
+    }
+
+/* 퀘스트 서브탭 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quests-subtabs {
+    border-bottom-color: var(--rpg-border);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quests-subtab {
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-quests-subtab:hover {
+        border-color: var(--rpg-highlight);
+        color: var(--rpg-highlight);
+    }
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-quests-subtab.active {
+        border-color: var(--rpg-highlight);
+        color: var(--rpg-highlight);
+    }
+
+/* 보관함 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-storage-location {
+    border-color: var(--rpg-border);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] .rpg-storage-header {
+    background: var(--rpg-highlight);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] .rpg-storage-content {
+    background: var(--rpg-accent);
+}
+
+/* 인벤토리·퀘스트 버튼 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-edit-btn,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-add-btn,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-remove-btn,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-edit,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-remove,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-add-quest-btn {
+    background: var(--rpg-accent);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-add-btn,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-add-quest-btn {
+    background: transparent;
+    border-color: var(--rpg-highlight);
+    color: var(--rpg-highlight);
+}
+
+/* 인벤토리·퀘스트 항목 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-text,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-item,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-main-quest-display {
+    background: var(--rpg-accent);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-quest-item:hover {
+        border-color: var(--rpg-highlight);
+    }
+
+/* 안내 문구 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-hint,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-hint,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inventory-empty,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-empty {
+    border-color: var(--rpg-highlight);
+    color: var(--rpg-text);
+}
+
+/* 입력창 */
+.rpg-panel[data-theme="Simple_Dark"] .rpg-inline-input,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-edit-form input,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-quest-edit-form textarea {
+    background: var(--rpg-bg);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-inline-input:focus,
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-quest-edit-form input:focus,
+    .rpg-panel[data-theme="Simple_Dark"] .rpg-quest-edit-form textarea:focus {
+        border-color: var(--rpg-highlight);
+    }
+
+/* 캐릭터 카드 */
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-character-card {
+    background-color: var(--rpg-bg);
+    border-color: var(--rpg-border);
+}
+
+/* 지도 배경 */
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-map-bg {
+    background-color: var(--rpg-highlight);
+}
+
+/* 수정 가능한 스탯 텍스트 */
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-editable-stat {
+    color: var(--rpg-text);
+}
+
+/* 주사위 팝업 배경 */
+.rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-content {
+    background: var(--SmartThemeBlurTintColor);
+    --rpg-bg: var(--SmartThemeBlurTintColor);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-text: var(--SmartThemeBodyColor);
+    --rpg-highlight: var(--SmartThemeQuoteColor);
+    --rpg-border: var(--SmartThemeBorderColor);
+}
+
+/* 주사위 팝업 헤더 */
+.rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-header h3 {
+    color: var(--rpg-text);
+}
+
+/* 주사위 팝업 아이콘 */
+.rpg-dice-popup[data-theme="Simple_Dark"] #rpg-dice-title > i.fa-solid {
+    color: var(--rpg-text) !important;
+}
+
+/* 주사위 팝업 버튼들 */
+#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-btn-icon,
+#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-btn-primary {
+    background: var(--rpg-accent);
+    color: var(--rpg-text);
+}
+/* 주사위 팝업 - 굴리는 중... */
+#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-rolling-text {
+    animation: none;
+}
+
+/* 반투명 배경 위젯 모음 */
+.rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-selector-container,
+.rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-result,
+.rpg-panel[data-theme="Simple_Dark"] .rpg-dice-display,
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-mood,
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-classic-stat,
+#rpg-companion-panel[data-theme="Simple_Dark"] #rpg-info-box,
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-dashboard-widget,
+#rpg-companion-panel[data-theme="Simple_Dark"] .rpg-notebook-header {
+    background: rgba(0,0,0,0.50);
+}
+
+/* 팝업 배경 오버레이 */
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"]::before,
+#rpg-prompts-editor-popup[data-theme="Simple_Dark"]::before,
+#rpg-settings-popup[data-theme="Simple_Dark"]::before {
+    background: rgba(0,0,0,0.85);
+}
+
+/* 프롬프트 편집 팝업 - 헤더 */
+#rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-header,
+#rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-footer,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-header,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-footer,
+#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-header, {
+    background: var(--rpg-accent);
+    border-color: var(--rpg-border);
+}
+
+/* 프롬프트 편집 팝업 - 바디 */
+#rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-preset-management,
+#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-body {
+    background: var(--rpg-bg);
+    border-color: var(--rpg-border);
+}
+
+/* 인카운터 - 컨테이너 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-container {
+    background: var(--rpg-bg);
+    border-color: var(--rpg-border);
+}
+
+/* 인카운터 - 헤더 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-header {
+    background: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, Black);
+    border-bottom-color: var(--SmartThemeBorderColor);
+}
+
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-container {
+    background: var(--SmartThemeBlurTintColor);
+    border: 2px solid var(--SmartThemeBorderColor);
+    box-shadow: none;
+}
+
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-header h2 {
+    color: var(--SmartThemeBodyColor);
+    text-shadow: 0 0 20px #ff006e, 0 0 40px #8b00ff;
+}
+
+/* 인카운터 - 전투 종료 버튼 */
+#rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-conclude-btn {
+    background: rgba(0,0,0,0.85);
+}
+
+/* 인카운터 - 닫기 버튼 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-close-btn {
+    color: #ff006e;
+}
+
+    .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-close-btn:hover {
+        color: #00fff9;
+        text-shadow: 0 0 10px #00fff9;
+    }
+
+/* 인카운터 - 본문 배경 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-content {
+    background: var(--SmartThemeBlurTintColor);
+}
+
+/* 인카운터 - 섹션 제목 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-section {
+    color: #00fff9;
+    text-shadow: 0 0 15px #ff006e;
+}
+
+/* 인카운터 - 카드 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-card {
+    background: var(--SmartThemeBlurTintColor);
+    border-color: var(--rpg-border);
+    box-shadow: none;
+}
+
+/* 인카운터 - 적 체력바 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-hp-fill {
+    background: linear-gradient(to right, #8b00ff, #ff006e);
+}
+
+/* 인카운터 - 아군 체력바 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-hp-party {
+    background: linear-gradient(to right, #00fff9, #8b00ff);
+}
+
+/* 인카운터 - 이모지, 전투 로그 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-status,
+.rpg-encounter-modal[data-theme="Simple_Dark"] #rpg-encounter-log {
+    background: rgba(0,0,0,0.5);
+}
+
+/* 인카운터 - 행동 버튼 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-action-btn {
+    background: var(--SmartThemeBlurTintColor);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-action-btn:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--SmartThemeBorderColor) 30%, transparent);
+        box-shadow: none;
+    }
+
+/* 인카운터 - 로딩 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-loading {
+    color: var(--rpg-text);
+}
+
+    .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-loading i {
+        color: #ff006e;
+        filter: drop-shadow(0 0 10px #ff006e);
+    }
+
+/* 인카운터 - 종료 화면 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-over {
+    color: var(--rpg-text);
+}
+
+    .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-over h2 {
+        text-shadow: 0 0 20px currentColor;
+    }
+
+/* 인카운터 - 커스텀 입력창 */
+.rpg-encounter-modal[data-theme="Simple_Dark"] #rpg-encounter-custom-input {
+    background: var(--rpg-bg);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+    .rpg-encounter-modal[data-theme="Simple_Dark"] #rpg-encounter-custom-input:focus {
+        border-color: var(--rpg-highlight);
+    }
+
+/* 대상 선택 체력바 */
+.rpg-target-selection-overlay[data-theme="Simple_Dark"] .rpg-target-hp {
+    color: var(--rpg-text);
+}
+
+/* 음악 위젯 */
+.rpg-panel[data-theme="Simple_Dark"] ~ .rpg-music-widget .rpg-music-widget-content,
+body[data-theme="Simple_Dark"] .rpg-music-widget-content,
+.rpg-music-widget[data-theme="Simple_Dark"] .rpg-music-widget-content {
+    background: rgba(0,0,0,0.5);
+}
+
+.rpg-music-widget[data-theme="Simple_Dark"] .rpg-music-widget-play {
+    background: var(--SmartThemeBlurTintColor);
+    color: var(--SmartThemeQuoteColor);
+    box-shadow: none;
+    border: 1px solid var(--SmartThemeBorderColor);
+}
+
+.rpg-music-widget[data-theme="Simple_Dark"] .rpg-music-widget-close,
+.rpg-music-widget[data-theme="Simple_Dark"] .rpg-music-widget-icon {
+    background: rgba(0,0,0,0.5);
+}
+
+.rpg-panel[data-theme="Simple_Dark"] ~ .rpg-music-widget .rpg-music-widget-play,
+body[data-theme="Simple_Dark"] .rpg-music-widget-play {
+    color: #8b00ff;
+}
+
+.rpg-music-widget[data-theme="Simple_Dark"] .rpg-music-widget-play {
+    background: var(--SmartThemeBlurTintColor);
+    color: var(--SmartThemeQuoteColor);
+    box-shadow: none;
+    border: 1px solid var(--SmartThemeBorderColor);
+}
+
+/* 플로팅 위젯 */
+body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-fab-widget {
+    background: var(--SmartThemeBlurTintColor);
+    border: 1px solid var(--rpg-border);
+    color: var(--rpg-text);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-fab-widget-attr-name {
+    color: var(--SmartThemeBodyColor);
+}
+
+body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-fab-widget:hover {
+    border-color: rgba(255, 0, 110, 0.7);
+    box-shadow: 0 4px 16px rgba(139, 0, 255, 0.5), 0 0 12px rgba(255, 0, 110, 0.4);
+}
+
+/* 스트립 위젯 */
+body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-strip-widget {
+    background: rgba(0,0,0,0.5);
+    border-color: var(--rpg-border);
+    color: var(--rpg-text);
+}
+
+/* 등장인물 */
+#rpg-alt-present-characters[data-theme="Simple_Dark"] {
+    background: color-mix(in srgb, var(--rpg-bg) 80%, Black);
+}
+
+    /* 등장인물 - 사진 */
+    #rpg-alt-present-characters[data-theme="Simple_Dark"] .rpg-alt-present-character__portrait {
+        box-shadow: none;
+    }
+
 /* ============================================================
    RPG Companion Theme - 사용자 지정
    ============================================================ */

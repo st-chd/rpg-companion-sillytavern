@@ -622,7 +622,6 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     height: clamp(24px, 4vh, 32px);
     border-radius: 50%;
     border: 2px solid var(--rpg-highlight);
-    box-shadow: 0 0 8px var(--rpg-highlight);
     object-fit: cover;
     transition: transform 0.3s ease;
     flex-shrink: 0;
@@ -1073,7 +1072,6 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
 .rpg-mood-emoji {
     font-size: clamp(12px, 1.8vw, 16px);
     flex-shrink: 0;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .rpg-mood-conditions {
@@ -2846,7 +2844,7 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     justify-content: center;
     gap: 0.625em;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--rpg-shadow);
+    /*box-shadow: 0 4px 15px var(--rpg-shadow);*/
 }
 
 .rpg-btn-primary:hover {
@@ -3299,7 +3297,6 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3385,7 +3382,6 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8662,12 +8658,12 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     align-items: center;
     gap: 12px;
     padding: 10px 14px;
-    background: var(--rpg-accent);
+    /* background: var(--rpg-accent); */
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1); */
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 2px solid var(--rpg-border);
+    border: 2px solid var(--SmartThemeBorderColor);
 }
 
 .rpg-music-widget-content:hover {
