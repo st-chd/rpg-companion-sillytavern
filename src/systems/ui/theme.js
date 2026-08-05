@@ -177,6 +177,18 @@ export function toggleAnimations() {
 }
 
 /**
+ * Applies the widget font scale to the strip and mobile FAB widgets.
+ * The widgets live outside the panel (fixed-position, direct children of body),
+ * so the variable goes on <body> for both to inherit. style.css multiplies every
+ * widget font-size by it, keeping their relative sizes intact.
+ */
+export function applyWidgetFontScale() {
+    const percent = Number(extensionSettings.widgetFontScale ?? 100);
+    const scale = Number.isFinite(percent) ? percent / 100 : 1;
+    document.body.style.setProperty('--rpg-widget-font-scale', String(scale));
+}
+
+/**
  * Updates visibility of feature toggles in main panel based on settings
  */
 export function updateFeatureTogglesVisibility() {

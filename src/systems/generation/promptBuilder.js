@@ -15,6 +15,7 @@ import {
 } from './jsonPromptHelpers.js';
 import { applyLocks } from './lockManager.js';
 import { isPresentCharactersEnabled } from '../../utils/presentCharacters.js';
+import { i18n } from '../../core/i18n.js';
 
 // Type imports
 /** @typedef {import('../../types/inventory.js').InventoryV2} InventoryV2 */
@@ -339,6 +340,12 @@ export function generateTrackerInstructions(includeHtmlPrompt = true, includeCon
 
         // Universal instruction header
         instructions += '\nAt the start of every reply, you must attach an update to the trackers in EXACTLY the JSON format shown below as a single unified JSON object containing all enabled tracker fields. ';
+
+        // Force tracker content into Korean when the UI language is set to Korean,
+        // while explicitly keeping the RP narrative/dialogue in whatever language it's already in.
+        if (i18n.currentLanguage === 'kr' && extensionSettings.forceKoreanTrackerLanguage) {
+            instructions += 'This instruction applies to the trackers (JSON) ONLY: always write all tracker values and descriptions in Korean (keep the JSON key names in English). This does NOT affect the language of the RP reply itself (narration, dialogue, etc.) - keep writing the RP reply in whatever language you have been using so far. ';
+        }
 
         // Append custom instruction portion if available
         const customPrompt = extensionSettings.customTrackerInstructionsPrompt;

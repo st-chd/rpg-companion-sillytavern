@@ -1,11 +1,13 @@
 @import url('theme.css');
 
-/* Ensure chat stays centered when panel is visible */
-body:has(.rpg-panel.rpg-position-right) #sheld {
+/* Ensure chat stays centered when panel is visible.
+   Skipped under Not-A-Discord-Theme, which anchors #sheld via --chat-panel-left-offset
+   instead of centring it - see the theme compatibility block further down. */
+body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-right) #sheld {
     margin: auto !important;
 }
 
-body:has(.rpg-panel.rpg-position-left) #sheld {
+body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-left) #sheld {
     margin: auto !important;
 }
 /* ============================================
@@ -68,6 +70,126 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
 .rpg-panel.rpg-position-left.rpg-collapsed {
     right: calc(100vw - 40px);
     left: 0;
+}
+
+/* 데스크톱에서만 - 캐릭터 목록 패널과 RPG 접힘 패널 나란히 배치 */
+@media (min-width: 1001px) {
+    /* These assume vanilla SillyTavern, where the nav drawers sit in the margin
+       beside a centred #sheld. Not-A-Discord-Theme moves them into its own
+       columns, so they must not apply there. */
+    body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-right.rpg-collapsed) #right-nav-panel {
+        right: 2.5rem;
+        width: calc((100dvw - var(--sheldWidth) - 2px) / 2 - 2.5rem);
+    }
+
+    body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-right.rpg-collapsed.rpg-strip-widgets-enabled) #right-nav-panel {
+        right: 5rem;
+        width: calc((100dvw - var(--sheldWidth) - 2px) / 2 - 5rem);
+    }
+
+    body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-left.rpg-collapsed) #left-nav-panel {
+        left: 2.5rem;
+        width: calc((100dvw - var(--sheldWidth) - 2px) / 2 - 2.5rem);
+    }
+
+    body:not(.rpg-nsd-theme):has(.rpg-panel.rpg-position-left.rpg-collapsed.rpg-strip-widgets-enabled) #left-nav-panel {
+        left: 5rem;
+        width: calc((100dvw - var(--sheldWidth) - 2px) / 2 - 5rem);
+    }
+
+    .rpg-panel.rpg-collapsed {
+        z-index: 3006;
+    }
+}
+
+/* ============================================
+   SillyTavern-Not-A-Discord-Theme COMPATIBILITY
+
+   The theme replaces SillyTavern's centred-chat layout with a tiling one: every
+   column's width is summed and the chat gets whatever is left, via
+     --center-panels-width: calc(100vw - nav bar - known panels - char panel)
+   It only reserves space for panels it knows about, and it does not know about
+   us - so our fixed-position panel ends up overlapping the chat.
+
+   We join that layout by re-declaring --center-panels-width with our own width
+   subtracted. Those variables are theme-only, so these rules are inert without
+   it; everything here is additionally gated on .rpg-nsd-theme, which
+   src/utils/themeCompat.js puts on <body> only while the theme is active.
+   ============================================ */
+
+@media (min-width: 1001px) {
+    /* Match the width the theme gives its own right-hand panels, so the user's
+       "Right Panels Width" setting applies to us too. */
+    body.rpg-nsd-theme {
+        --rpg-panel-width: var(--panel-base-width, 420px);
+    }
+
+    /* Reserve our width in the theme's layout maths. The chat loses the same
+       amount whichever side we sit on, so these match either position. One rule
+       per panel state, because the collapsed strip is much narrower than the
+       open panel.
+
+       !important is required: the theme declares --center-panels-width on
+       "body:has(#bg1)", and :has() takes the specificity of its argument, so
+       that selector counts as an ID (1,0,1). No amount of classes beats it. */
+    body.rpg-nsd-theme:has(.rpg-panel:is(.rpg-position-right, .rpg-position-left):not(.rpg-collapsed)) {
+        --center-panels-width: calc(100vw - var(--nav-bar-width) - var(--panels-total-width) - var(--char-panel-width) - var(--rpg-panel-width)) !important;
+    }
+
+    body.rpg-nsd-theme:has(.rpg-panel:is(.rpg-position-right, .rpg-position-left).rpg-collapsed) {
+        --center-panels-width: calc(100vw - var(--nav-bar-width) - var(--panels-total-width) - var(--char-panel-width) - 2.5rem) !important;
+    }
+
+    body.rpg-nsd-theme:has(.rpg-panel:is(.rpg-position-right, .rpg-position-left).rpg-collapsed.rpg-strip-widgets-enabled) {
+        --center-panels-width: calc(100vw - var(--nav-bar-width) - var(--panels-total-width) - var(--char-panel-width) - 5rem) !important;
+    }
+
+    /* The theme anchors the chat with --chat-panel-left-offset; our centring
+       margin would drag it back to the middle and re-create the overlap. */
+    body.rpg-nsd-theme:has(.rpg-panel:is(.rpg-position-right, .rpg-position-left)) #sheld {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Our default width is derived from --sheldWidth, which the theme no longer
+       uses for the chat. Pin it to the width we just reserved. */
+    body.rpg-nsd-theme .rpg-panel:is(.rpg-position-right, .rpg-position-left):not(.rpg-collapsed) {
+        width: var(--rpg-panel-width);
+    }
+
+    /* --- Right placement ---------------------------------------------------
+       Take our place in the theme's right-hand stack instead of sitting on top
+       of it. The theme anchors every right panel to the viewport edge with
+       "right: var(--panel-X-offset)", starting at 0 - which is exactly where our
+       right:0 puts us, so the first panel opened would land underneath us and
+       leave a panel-sized hole next to the chat. Offsetting by the stack's total
+       width (plus the lorebook/expression column) parks us immediately right of
+       the chat, which is where the reserved space actually is. */
+    body.rpg-nsd-theme .rpg-panel.rpg-position-right {
+        right: calc(var(--panels-total-width) + var(--expression-image-lorebook-width)) !important;
+    }
+
+    /* --- Left placement ----------------------------------------------------
+       Mirror image of the above. The theme's left edge is already occupied by
+       its icon rail and the character panel, so left:0 would bury us under both.
+       Sit immediately after them - the same spot the chat would otherwise start
+       at - and push the chat across by our width (below). */
+    body.rpg-nsd-theme .rpg-panel.rpg-position-left {
+        left: calc(var(--nav-bar-width) + var(--char-panel-width)) !important;
+        right: auto !important;
+    }
+
+    body.rpg-nsd-theme:has(.rpg-panel.rpg-position-left:not(.rpg-collapsed)) {
+        --chat-panel-left-offset: calc(var(--nav-bar-width) + var(--char-panel-width) + var(--rpg-panel-width)) !important;
+    }
+
+    body.rpg-nsd-theme:has(.rpg-panel.rpg-position-left.rpg-collapsed) {
+        --chat-panel-left-offset: calc(var(--nav-bar-width) + var(--char-panel-width) + 2.5rem) !important;
+    }
+
+    body.rpg-nsd-theme:has(.rpg-panel.rpg-position-left.rpg-collapsed.rpg-strip-widgets-enabled) {
+        --chat-panel-left-offset: calc(var(--nav-bar-width) + var(--char-panel-width) + 5rem) !important;
+    }
 }
 
 .rpg-panel.rpg-collapsed .rpg-game-container {
@@ -905,15 +1027,55 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     transform: scale(1.15);
 }
 
-/* Mobile: always show lock icons since there's no hover */
+/* Mobile: there's no hover, so lock icons are hidden by default and only
+   shown while Edit Mode is enabled (toggled via #rpg-lock-edit-mode-toggle). */
 @media (max-width: 1000px) {
     .rpg-section-lock-icon {
+        display: none;
+    }
+
+    .rpg-panel.rpg-lock-edit-mode .rpg-section-lock-icon {
+        display: inline;
         opacity: 0.6 !important;
         pointer-events: auto !important;
     }
 
-    .rpg-section-lock-icon.locked {
+    .rpg-panel.rpg-lock-edit-mode .rpg-section-lock-icon.locked {
         opacity: 0.9 !important;
+    }
+}
+
+/* Edit Mode toggle button (main panel header) */
+.rpg-lock-edit-mode-toggle {
+    background: none;
+    border: none;
+    color: var(--rpg-text, inherit);
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    padding: 4px 6px;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.rpg-lock-edit-mode-toggle:hover {
+    opacity: 1;
+}
+
+.rpg-lock-edit-mode-toggle.active {
+    opacity: 1;
+    color: var(--rpg-highlight, #e94560);
+}
+
+/* Only show the Edit Mode toggle where lock icons are otherwise hidden (mobile) */
+.rpg-lock-edit-mode-toggle {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .rpg-lock-edit-mode-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -4332,7 +4494,6 @@ body:has(.rpg-panel.rpg-position-left) #sheld {
     -webkit-overflow-scrolling: touch;
     flex: 1 1 auto;
     min-height: 0;
-    background: transparent;
     color: inherit;
 }
 
@@ -5864,7 +6025,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     /* Prevent buttons from shrinking in scroll container */
     .rpg-footer-left button,
     .rpg-footer-right button {
-        flex-shrink: 0;
+        /* flex-shrink: 0; */
         white-space: nowrap;
         font-size: clamp(12px, 3.1vw, 15px) !important;
         padding: 0.5em 0.75em !important;
@@ -5936,7 +6097,6 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 
     /* Make stat items wrap on mobile */
     .rpg-editor-stat-item {
-        flex-wrap: wrap;
         gap: 0.5em;
         padding: 0.5em;
     }
@@ -10163,7 +10323,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     border: 1px solid rgba(100, 150, 255, 0.3);
     border-radius: 8px;
     padding: 6px 10px;
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     color: #fff;
     white-space: nowrap;
     backdrop-filter: blur(10px);
@@ -10281,7 +10441,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: calc(16px * var(--rpg-widget-font-scale, 1));
     padding: 6px;
     min-width: 32px;
     min-height: 32px;
@@ -10293,7 +10453,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 /* Weather description widget */
 .rpg-fab-widget-weather-desc {
     max-width: 100px;
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
 }
 
 /* Clock/Time widget - bottom position with animated clock */
@@ -10302,7 +10462,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     flex-direction: column;
     align-items: center;
     font-family: 'Roboto Mono', 'Consolas', monospace;
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     letter-spacing: 0.5px;
     padding: 4px 8px;
     gap: 2px;
@@ -10354,19 +10514,19 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-fab-clock-time {
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     white-space: nowrap;
 }
 
 /* Date widget */
 .rpg-fab-widget-date {
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
 }
 
 /* Location widget - two lines */
 .rpg-fab-widget-location {
     max-width: 90px;
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -10390,13 +10550,13 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-fab-widget-attr-name {
-    font-size: 8px;
+    font-size: calc(8px * var(--rpg-widget-font-scale, 1));
     opacity: 0.7;
     text-transform: uppercase;
 }
 
 .rpg-fab-widget-attr-value {
-    font-size: 12px;
+    font-size: calc(12px * var(--rpg-widget-font-scale, 1));
     font-weight: bold;
     color: var(--rpg-highlight, #4a90e2);
     white-space: nowrap;
@@ -10417,7 +10577,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-fab-widget-stat-item {
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     font-family: 'Roboto Mono', 'Consolas', monospace;
     font-weight: 600;
     white-space: nowrap;
@@ -10443,13 +10603,13 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-fab-widget-attr-name {
-    font-size: 8px;
+    font-size: calc(8px * var(--rpg-widget-font-scale, 1));
     color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.5px;
 }
 
 .rpg-fab-widget-attr-value {
-    font-size: 12px;
+    font-size: calc(12px * var(--rpg-widget-font-scale, 1));
     font-weight: 700;
     color: #6af;
     font-family: 'Roboto Mono', 'Consolas', monospace;
@@ -10535,7 +10695,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     border: 1px solid var(--rpg-border, rgba(100, 150, 255, 0.3));
     border-radius: 6px;
     padding: 4px;
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
     color: var(--rpg-text, #eaeaea);
     backdrop-filter: blur(8px);
     width: calc(100% - 8px);
@@ -10554,7 +10714,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 
 /* Weather Icon Widget */
 .rpg-strip-widget-weather {
-    font-size: 18px;
+    font-size: calc(18px * var(--rpg-widget-font-scale, 1));
     padding: 6px 4px;
     gap: 2px;
 }
@@ -10564,7 +10724,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-strip-widget-weather .rpg-strip-widget-desc {
-    font-size: 8px;
+    font-size: calc(8px * var(--rpg-widget-font-scale, 1));
     opacity: 0.8;
     text-align: center;
     word-break: break-word;
@@ -10574,7 +10734,7 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 /* Clock Widget with animated face */
 .rpg-strip-widget-clock {
     font-family: 'Roboto Mono', 'Consolas', monospace;
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
     gap: 4px;
     padding: 6px 4px;
 }
@@ -10627,18 +10787,18 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 .rpg-strip-widget-clock .rpg-strip-widget-value {
     font-weight: 600;
     letter-spacing: 0.5px;
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
 }
 
 /* Date Widget */
 .rpg-strip-widget-date {
-    font-size: 9px;
+    font-size: calc(9px * var(--rpg-widget-font-scale, 1));
     text-align: center;
     gap: 2px;
 }
 
 .rpg-strip-widget-date i {
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     opacity: 0.7;
 }
 
@@ -10649,13 +10809,13 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 
 /* Location Widget */
 .rpg-strip-widget-location {
-    font-size: 9px;
+    font-size: calc(9px * var(--rpg-widget-font-scale, 1));
     text-align: center;
     gap: 2px;
 }
 
 .rpg-strip-widget-location i {
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     color: var(--rpg-highlight, #4a90e2);
 }
 
@@ -10685,19 +10845,19 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
     flex-direction: column;
     align-items: center;
     font-family: 'Roboto Mono', 'Consolas', monospace;
-    font-size: 9px;
+    font-size: calc(9px * var(--rpg-widget-font-scale, 1));
     width: 100%;
 }
 
 .rpg-strip-stat-name {
-    font-size: 7px;
+    font-size: calc(7px * var(--rpg-widget-font-scale, 1));
     opacity: 0.6;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .rpg-strip-stat-value {
-    font-size: 11px;
+    font-size: calc(11px * var(--rpg-widget-font-scale, 1));
     font-weight: 700;
 }
 
@@ -10721,14 +10881,14 @@ body:has(.rpg-panel.rpg-mobile-open) .rpg-fab-widget-container {
 }
 
 .rpg-strip-attr-name {
-    font-size: 7px;
+    font-size: calc(7px * var(--rpg-widget-font-scale, 1));
     opacity: 0.6;
     text-transform: uppercase;
     letter-spacing: 0.3px;
 }
 
 .rpg-strip-attr-value {
-    font-size: 10px;
+    font-size: calc(10px * var(--rpg-widget-font-scale, 1));
     font-weight: 700;
     color: var(--rpg-highlight, #6af);
     font-family: 'Roboto Mono', 'Consolas', monospace;

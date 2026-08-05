@@ -1121,42 +1121,28 @@ body:has(.rpg-panel[data-theme="cyberpunk"]) .rpg-strip-widget {
    RPG Companion Theme - Simple_Light
    ============================================================ */
 
-/* 기본 설정 */
-.rpg-panel[data-theme="Simple_Light"] {
-    --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
-    --rpg-text: var(--SmartThemeBodyColor);
-    --rpg-highlight: var(--SmartThemeQuoteColor);
-    --rpg-border: var(--SmartThemeBorderColor);
-    --rpg-shadow: rgba(255,255,255,0);
-}
-
+/* 기본 설정 - 패널 및 패널 밖 독립 요소 */
+.rpg-panel[data-theme="Simple_Light"],
 #rpg-thought-panel[data-theme="Simple_Light"],
 #rpg-thought-icon[data-theme="Simple_Light"],
 #rpg-alt-present-characters[data-theme="Simple_Light"],
 .rpg-mobile-toggle[data-theme="Simple_Light"] {
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, white);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
     --rpg-shadow: rgba(255,255,255,0);
 }
 
-/* 설정 팝업 콘텐츠 */
-#rpg-settings-popup[data-theme="Simple_Light"] .rpg-settings-popup-content {
-    --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
-    --rpg-text: var(--SmartThemeBodyColor);
-    --rpg-highlight: var(--SmartThemeQuoteColor);
-    --rpg-border: var(--SmartThemeBorderColor);
-    background: rgba(255,255,255,0.2);
-    color: var(--SmartThemeBodyColor);
-}
-
+/* 설정 팝업 콘텐츠 - 패널 밖이라 변수를 다시 선언해야 함.
+   프롬프트 편집 팝업도 반드시 포함할 것: 빠지면 style.css의 기본값
+   (--rpg-accent: var(--black30a))이 남아 헤더/푸터가 테마 색을 못 따라감. */
+#rpg-settings-popup[data-theme="Simple_Light"] .rpg-settings-popup-content,
+#rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-content,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-content {
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, white);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
@@ -1438,7 +1424,7 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 .rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-popup-content {
     background: var(--SmartThemeBlurTintColor);
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, white);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
@@ -1489,7 +1475,8 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 #rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-footer,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-header,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-footer,
-#rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-popup-header, {
+#rpg-dice-popup[data-theme="Simple_Light"] .rpg-dice-popup-header,
+.rpg-settings-popup-content[data-theme="Simple_Light"] .rpg-settings-popup-header {
     background: var(--rpg-accent);
     border-color: var(--rpg-border);
 }
@@ -1497,7 +1484,8 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-inline-thought-text {
 /* 프롬프트 편집 팝업 - 바디 */
 #rpg-prompts-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-content,
 #rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-preset-management,
-#rpg-settings-popup[data-theme="Simple_Light"] .rpg-settings-popup-body {
+#rpg-settings-popup[data-theme="Simple_Light"] .rpg-settings-popup-body,
+#rpg-tracker-editor-popup[data-theme="Simple_Light"] .rpg-settings-popup-body {
     background: var(--rpg-bg);
     border-color: var(--rpg-border);
 }
@@ -1690,42 +1678,28 @@ body:has(.rpg-panel[data-theme="Simple_Light"]) .rpg-strip-widget {
    RPG Companion Theme - Simple_Dark
    ============================================================ */
 
-/* 기본 설정 */
-.rpg-panel[data-theme="Simple_Dark"] {
-    --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
-    --rpg-text: var(--SmartThemeBodyColor);
-    --rpg-highlight: var(--SmartThemeQuoteColor);
-    --rpg-border: var(--SmartThemeBorderColor);
-    --rpg-shadow: rgba(0,0,0,0);
-}
-
+/* 기본 설정 - 패널 및 패널 밖 독립 요소 */
+.rpg-panel[data-theme="Simple_Dark"],
 #rpg-thought-panel[data-theme="Simple_Dark"],
 #rpg-thought-icon[data-theme="Simple_Dark"],
 #rpg-alt-present-characters[data-theme="Simple_Dark"],
 .rpg-mobile-toggle[data-theme="Simple_Dark"] {
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, black);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
     --rpg-shadow: rgba(0,0,0,0);
 }
 
-/* 설정 팝업 콘텐츠 */
-#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content {
-    --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
-    --rpg-text: var(--SmartThemeBodyColor);
-    --rpg-highlight: var(--SmartThemeQuoteColor);
-    --rpg-border: var(--SmartThemeBorderColor);
-    background: rgba(0,0,0,0.2);
-    color: var(--SmartThemeBodyColor);
-}
-
+/* 설정 팝업 콘텐츠 - 패널 밖이라 변수를 다시 선언해야 함.
+   프롬프트 편집 팝업도 반드시 포함할 것: 빠지면 style.css의 기본값
+   (--rpg-accent: var(--black30a))이 남아 헤더/푸터가 테마 색을 못 따라감. */
+#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content,
+#rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content,
 #rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content {
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, black);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
@@ -2007,7 +1981,7 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
 .rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-content {
     background: var(--SmartThemeBlurTintColor);
     --rpg-bg: var(--SmartThemeBlurTintColor);
-    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, transparent);
+    --rpg-accent: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, black);
     --rpg-text: var(--SmartThemeBodyColor);
     --rpg-highlight: var(--SmartThemeQuoteColor);
     --rpg-border: var(--SmartThemeBorderColor);
@@ -2058,7 +2032,8 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
 #rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-footer,
 #rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-header,
 #rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-footer,
-#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-header, {
+#rpg-dice-popup[data-theme="Simple_Dark"] .rpg-dice-popup-header,
+.rpg-settings-popup-content[data-theme="Simple_Dark"] .rpg-settings-popup-header {
     background: var(--rpg-accent);
     border-color: var(--rpg-border);
 }
@@ -2066,7 +2041,8 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
 /* 프롬프트 편집 팝업 - 바디 */
 #rpg-prompts-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-content,
 #rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-preset-management,
-#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-body {
+#rpg-settings-popup[data-theme="Simple_Dark"] .rpg-settings-popup-body,
+#rpg-tracker-editor-popup[data-theme="Simple_Dark"] .rpg-settings-popup-body {
     background: var(--rpg-bg);
     border-color: var(--rpg-border);
 }
@@ -2079,7 +2055,7 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
 
 /* 인카운터 - 헤더 */
 .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-header {
-    background: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, Black);
+    background: color-mix(in srgb, var(--SmartThemeQuoteColor) 30%, black);
     border-bottom-color: var(--SmartThemeBorderColor);
 }
 
@@ -2089,10 +2065,10 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-inline-thought-text {
     box-shadow: none;
 }
 
-.rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-header h2 {
-    color: var(--SmartThemeBodyColor);
-    text-shadow: 0 0 20px #ff006e, 0 0 40px #8b00ff;
-}
+    .rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-header h2 {
+        color: var(--SmartThemeBodyColor);
+        text-shadow: 0 0 20px #ff006e, 0 0 40px #8b00ff;
+    }
 
 /* 인카운터 - 전투 종료 버튼 */
 #rpg-encounter-modal[data-theme="Simple_Dark"] .rpg-encounter-conclude-btn {
@@ -2247,7 +2223,7 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-strip-widget {
 
 /* 등장인물 */
 #rpg-alt-present-characters[data-theme="Simple_Dark"] {
-    background: color-mix(in srgb, var(--rpg-bg) 80%, Black);
+    background: color-mix(in srgb, var(--rpg-bg) 80%, black);
 }
 
     /* 등장인물 - 사진 */
@@ -2305,61 +2281,4 @@ body:has(.rpg-panel[data-theme="Simple_Dark"]) .rpg-strip-widget {
 .rpg-encounter-modal[data-theme="custom"] .rpg-encounter-container {
     background: var(--rpg-bg);
     border-color: var(--rpg-border);
-}
-/* ============================================================
-   MINIMAL
-   ============================================================ */
-
-body:has(.rpg-panel[data-theme="minimal"]) .rpg-fab-widget {
-    background: rgba(245, 245, 250, 0.98);
-    border: 1px solid rgba(200, 200, 210, 0.8);
-    color: #2c3e50;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-    body:has(.rpg-panel[data-theme="minimal"]) .rpg-fab-widget:hover {
-        border-color: rgba(52, 152, 219, 0.6);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    }
-/* ============================================================
-   DARK
-   ============================================================ */
-
-body:has(.rpg-panel[data-theme="dark"]) .rpg-fab-widget {
-    background: rgba(25, 25, 35, 0.95);
-    border: 1px solid rgba(70, 70, 90, 0.6);
-    color: #e0e0e0;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
-}
-
-    body:has(.rpg-panel[data-theme="dark"]) .rpg-fab-widget:hover {
-        border-color: rgba(100, 100, 130, 0.8);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-    }
-
-body:has(.rpg-panel[data-theme="dark"]) .rpg-strip-widget {
-    background: rgba(25, 25, 35, 0.9);
-    border-color: rgba(70, 70, 90, 0.6);
-    color: #e0e0e0;
-}
-/* ============================================================
-   LIGHT
-   ============================================================ */
-
-body:has(.rpg-panel[data-theme="light"]) .rpg-fab-widget {
-    background: rgba(255, 255, 255, 0.98);
-    border: 1px solid rgba(220, 220, 230, 0.8);
-    color: #2c3e50;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-    body:has(.rpg-panel[data-theme="light"]) .rpg-fab-widget:hover {
-        border-color: rgba(52, 152, 219, 0.6);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-    }
-
-body:has(.rpg-panel[data-theme="light"]) .rpg-strip-widget {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(220, 220, 230, 0.8);
-    color: #2c3e50;
 }

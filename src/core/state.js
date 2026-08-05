@@ -15,6 +15,7 @@ export let extensionSettings = {
     autoUpdate: false,
     updateDepth: 4, // How many messages to include in the context
     generationMode: 'together', // 'separate' or 'together' - whether to generate with main response or separately
+    forceKoreanTrackerLanguage: true, // When UI language is 'kr', force tracker JSON values to Korean while keeping RP text in its own language
     showUserStats: true,
     showInfoBox: true,
     showCharacterThoughts: true,
@@ -23,6 +24,7 @@ export let extensionSettings = {
     hideDefaultExpressionDisplay: false,
     showInventory: true, // Show inventory section (v2 system)
     showQuests: true, // Show quests section
+    lockEditModeEnabled: false, // When off, hides tracker lock/unlock icons until Edit Mode is toggled on (mainly for mobile, where icons can't rely on hover)
     showThoughtsInChat: true, // Show thoughts overlay in chat
     thoughtsInChatStyle: 'corner', // 'corner' or 'inline'
     narratorMode: false, // Use character card as narrator instead of fixed character references
@@ -98,6 +100,9 @@ export let extensionSettings = {
         stats: { enabled: true, position: 5 },            // All stats as compact numbers
         attributes: { enabled: true, position: 6 }        // Compact RPG attributes display
     },
+    // Font scale (%) for the info widgets - desktop collapsed strip and mobile FAB.
+    // 100 = the sizes hard-coded in style.css; every widget font is multiplied by this.
+    widgetFontScale: 100,
     // Desktop strip widget display options (shown in collapsed panel strip)
     desktopStripWidgets: {
         enabled: true, // Master toggle for strip widgets (enabled by default)
