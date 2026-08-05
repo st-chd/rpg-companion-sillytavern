@@ -83,6 +83,7 @@ import {
     applyCustomTheme,
     toggleCustomColors,
     toggleAnimations,
+    applyWidgetFontScale,
     updateFeatureTogglesVisibility,
     updateSettingsPopupTheme,
     applyCustomThemeToSettingsPopup
@@ -94,9 +95,7 @@ import {
     setupSettingsPopup,
     updateDiceDisplay,
     addDiceQuickReply,
-    getSettingsModal,
-    showWelcomeModalIfNeeded,
-    showDeprecationModalIfNeeded
+    getSettingsModal
 } from './src/systems/ui/modals.js';
 import {
     initTrackerEditor
@@ -111,10 +110,12 @@ import {
     cleanupCheckpointUI
 } from './src/systems/ui/checkpointUI.js';
 import { restoreCheckpointOnLoad } from './src/systems/features/chapterCheckpoint.js';
+import { initThemeCompat } from './src/utils/themeCompat.js';
 import {
     togglePlotButtons,
     updateCollapseToggleIcon,
     setupCollapseToggle,
+    setupLockEditModeToggle,
     updatePanelVisibility,
     updateSectionVisibility,
     applyPanelPosition,
@@ -263,13 +264,29 @@ async function addExtensionSettings() {
 
     // Set up language selector
     const langSelect = $('#rpg-companion-language-select');
+    const forceKoreanWrapper = $('#rpg-force-korean-tracker-wrapper');
+    const forceKoreanCheckbox = $('#rpg-force-korean-tracker-language');
+
+    const updateForceKoreanVisibility = (lang) => {
+        forceKoreanWrapper.toggle(lang === 'kr');
+    };
+
     if (langSelect.length) {
         langSelect.val(i18n.currentLanguage);
+        updateForceKoreanVisibility(i18n.currentLanguage);
         langSelect.on('change', async function() {
             const selectedLanguage = $(this).val();
             await i18n.setLanguage(selectedLanguage);
             // We need to re-apply translations to the settings panel specifically
             i18n.applyTranslations(document.getElementById('extensions_settings2'));
+            updateForceKoreanVisibility(selectedLanguage);
+        });
+    }
+
+    if (forceKoreanCheckbox.length) {
+        forceKoreanCheckbox.prop('checked', extensionSettings.forceKoreanTrackerLanguage).on('change', function() {
+            extensionSettings.forceKoreanTrackerLanguage = $(this).prop('checked');
+            saveSettings();
         });
     }
 }
@@ -280,6 +297,9 @@ async function addExtensionSettings() {
 async function initUI() {
     // Initialize i18n
     await i18n.init();
+
+    // Detect third-party themes that replace SillyTavern's layout (marks <body>)
+    initThemeCompat();
 
     // Only initialize UI if extension is enabled
     if (!extensionSettings.enabled) {
@@ -846,6 +866,15 @@ async function initUI() {
         updateStripWidgets();
     });
 
+    // Widget font scale - applies to both the desktop strip and the mobile FAB widgets
+    $('#rpg-widget-font-scale').on('input', function() {
+        const scale = Number($(this).val());
+        extensionSettings.widgetFontScale = scale;
+        $('#rpg-widget-font-scale-value').text(scale + '%');
+        applyWidgetFontScale();
+        saveSettings();
+    });
+
     $('#rpg-manual-update').on('click', async function() {
         if (!extensionSettings.enabled) {
             // console.log('[RPG Companion] Extension is disabled. Please enable it in the Extensions tab.');
@@ -1201,6 +1230,11 @@ async function initUI() {
     // Toggle visibility of strip widget options based on master toggle
     $('#rpg-strip-widget-options').toggle(stripWidgets.enabled || false);
 
+    const widgetFontScale = extensionSettings.widgetFontScale ?? 100;
+    $('#rpg-widget-font-scale').val(widgetFontScale);
+    $('#rpg-widget-font-scale-value').text(widgetFontScale + '%');
+    applyWidgetFontScale();
+
     $('#rpg-stat-bar-color-low').val(extensionSettings.statBarColorLow);
     $('#rpg-stat-bar-color-low-opacity').val(extensionSettings.statBarColorLowOpacity ?? 100);
     $('#rpg-stat-bar-color-low-opacity-value').text((extensionSettings.statBarColorLowOpacity ?? 100) + '%');
@@ -1265,6 +1299,9 @@ async function initUI() {
 
     // Setup collapse/expand toggle button
     setupCollapseToggle();
+
+    // Setup lock/unlock icon Edit Mode toggle (mobile)
+    setupLockEditModeToggle();
 
     // Render initial data if available
     renderUserStats();
@@ -1509,17 +1546,6 @@ jQuery(async () => {
             initSnowflakes();
         } catch (error) {
             console.error('[RPG Companion] Snowflakes initialization failed:', error);
-            // Non-critical - continue without it
-        }
-
-        // Show deprecation notice once for this release; otherwise keep the old welcome flow.
-        try {
-            const deprecationModalShown = showDeprecationModalIfNeeded();
-            if (!deprecationModalShown) {
-                showWelcomeModalIfNeeded();
-            }
-        } catch (error) {
-            console.error('[RPG Companion] Startup modal failed:', error);
             // Non-critical - continue without it
         }
 

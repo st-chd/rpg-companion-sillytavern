@@ -18,6 +18,7 @@ import {
     committedTrackerData
 } from '../../core/state.js';
 import { i18n } from '../../core/i18n.js';
+import { saveSettings } from '../../core/persistence.js';
 import { setupMobileTabs, removeMobileTabs } from './mobile.js';
 import { setupDesktopTabs, removeDesktopTabs, updateStripWidgets } from './desktop.js';
 
@@ -251,6 +252,37 @@ export function setupCollapseToggle() {
 
     // Set initial icon direction based on panel position
     updateCollapseToggleIcon();
+}
+
+/**
+ * Applies the current lockEditModeEnabled setting to the panel (class + button state).
+ */
+export function updateLockEditModeUI() {
+    const isEnabled = !!extensionSettings.lockEditModeEnabled;
+    $('#rpg-companion-panel').toggleClass('rpg-lock-edit-mode', isEnabled);
+    $('#rpg-lock-edit-mode-toggle').toggleClass('active', isEnabled);
+}
+
+/**
+ * Sets up the Edit Mode toggle button that reveals tracker lock/unlock icons on mobile
+ * (where there's no hover state to show them on demand).
+ */
+export function setupLockEditModeToggle() {
+    const $toggle = $('#rpg-lock-edit-mode-toggle');
+    if (!$toggle.length) {
+        return;
+    }
+
+    updateLockEditModeUI();
+
+    $toggle.on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        extensionSettings.lockEditModeEnabled = !extensionSettings.lockEditModeEnabled;
+        saveSettings();
+        updateLockEditModeUI();
+    });
 }
 
 /**

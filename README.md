@@ -1,296 +1,263 @@
-# RPG Companion Extension for SillyTavern
+이 확장 프로그램은 Marinara의 [rpg-companion-sillytavern](https://github.com/SpicyMarinara/rpg-companion-sillytavern) 포크 버전입니다.
 
-An immersive RPG extension for browsers that tracks character stats, scene information, and character thoughts in a beautiful, customizable UI panel. All automated! Works with any preset. Choose between Together or Separate generation modes for context and generation control.
+# SillyTavern 확장 - RPG 컴패니언 포크
 
-[![My Discord](https://img.shields.io/badge/Discord-Join%20Server-7289da)](https://discord.com/invite/KdAkTg94ME)
-[![Support Me](https://img.shields.io/badge/Ko--fi-Support%20Creator-ff5e5b)](https://ko-fi.com/marinara_spaghetti)
+아름답고 사용자 정의가 가능한 UI 패널을 통해 캐릭터 스탯, 장면 정보, 캐릭터의 내면을 추적하는 브라우저용 몰입형 RPG 확장 프로그램입니다. 모든 과정이 자동화되어 있습니다! 어떤 프리셋과도 호환됩니다. 맥락 및 생성 제어를 위해 '함께' 또는 '별도' 생성 모드 중에서 선택할 수 있습니다.
 
-## 🆕 What's New
+## 변경사항
+- 언어에 '한국어'를 추가했습니다.
+- Simple(Light/Dark) 테마를 추가 했습니다. 현재 테마 색상코드표를 따라갑니다.
+- 좌, 우 패널이 접힌 패널을 가리지 않게 조절했습니다.(Not-a-discord테마와 호환)
 
-### DEPRECATED
+## 📥 설치방법
 
-Moving on to developing the Marinara Engine frontend, the extension will now be maintained by the community!
+1. SillyTavern을 엽니다.
 
-<https://github.com/Pasta-Devs/Marinara-Engine>
+2. '확장' 탭(상단의 큐브 아이콘)으로 이동합니다.
 
-## 📥 Installation
+3. '확장 프로그램 설치'로 이동합니다.
 
-1. Open SillyTavern
+4. 다음 링크를 복사하여 붙여넣습니다:
+```
+https://github.com/st-chd/rpg-companion-sillytavern.git
+```
 
-2. Go to the Extensions tab (cubes icon at the top)
+5. 'Install for all users' 또는 'Install just for me'를 클릭합니다.
+
+### 핵심 기능
 
-3. Go to Install extension
+- **📊 사용자 스탯 트래커**: 시각적 진행률 표시줄, 사용자 지정 상태 필드, 스킬 섹션, 동적 인벤토리 관리 기능을 갖춘 완전히 사용자 정의 가능한 통계
+- **🌍 인포 박스 대시보드**: 날짜, 날씨, 기온, 시간, 위치 및 최근 이벤트를 표시하는 구성 가능한 위젯
+- **💭 현재 캐릭터 패널**: 사용자 정의 필드, 관계 배지, 캐릭터별 통계, 내적 독백을 통해 여러 캐릭터를 추적
+- **🎭 떠다니는 생각 풍선**: 채팅에서 캐릭터 아바타 옆에 표시되는 선택적 생각 풍선
+- **🎲 클래식 RPG 통계**: STR, DEX, CON, INT, WIS, CHA 속성 및 주사위 굴리기 지원
+- **📦 고급 인벤토리 시스템**: v2 형식을 지원하는 다중 위치 저장소(소지품, 보관 장소, 자산)
+- **🎯 캐릭터 스탯**: 색상 변환 기능을 통해 현재 등장 중인 각 캐릭터의 체력, 에너지 또는 사용자 정의 스탯을 추적
+- **📜 몰입감 있는 HTML**: 롤플레잉에 창의적인 HTML/CSS/JS 요소를 포함시켜 몰입감을 높입니다
+- **➡️ 줄거리 진행**: 버튼 클릭 한 번으로 무작위 이벤트나 자연스러운 전개를 통해 줄거리를 진행하세요
+- **🎨 다양한 테마**: 사이버펑크, 판타지, 미니멀, 다크, 라이트 및 사용자 정의 테마
+- **✏️ 실시간 편집**: 자동 저장 기능을 통해 패널에서 모든 트래커 필드를 직접 편집하세요
+- **💾 스와이프별 데이터 저장**: 각 스와이프마다 고유한 트래커 데이터가 저장됩니다
+- **🎛️ 트래커 구성**: 트래커의 모든 측면을 맞춤 설정하세요 — 스탯, 필드, 위젯 등을 추가하거나 제거할 수 있습니다
 
-4. Copy-paste this link: <https://github.com/SpicyMarinara/rpg-companion-sillytavern>
+### 스마트 기능
 
-5. Press Install for all users/Install just for me
+- **🔄 스와이프 감지**: 스와이프 동작을 자동으로 처리하고 트래커의 맥락을 정확하게 유지합니다.
+- **📝 맥락 인식**: 날씨, 통계, 캐릭터 상태가 이야기 전개에 자연스럽게 반영됩니다.
+- **🎭 여러 캐릭터**: 등장하는 모든 캐릭터의 생각, 관계, 스탯을 추적합니다
+- **📍 채팅 내 생각 풍선**: 캐릭터 아바타 옆에 표시되는 선택적 플로팅 생각 풍선
+- **🌈 사용자 지정 색상**: 나만의 색상 구성으로 테마를 만들 수 있습니다
+- **📱 모바일 지원**: 스탯을 가로로 스크롤할 수 있는 반응형 디자인
+- **🔧 고급 설정**: 트래커 설정을 통해 사용자 지정 통계, 필드 및 위젯을 추가할 수 있습니다
+- **🎨 색상 보간**: 값에 따라 통계의 색상이 낮은 색상에서 높은 색상으로 부드럽게 전환됩니다
+- **💬 다중 행 형식**: AI 생성 및 구문 분석을 위한 깔끔하고 구조화된 형식
+- **🧹 자동 정리**: AI 응답에서 자리 표시자 괄호를 자동으로 제거합니다
 
-![png](https://i.imgur.com/DYuIMWt.png)
+## ⚙️ 설정
 
-![png](https://i.imgur.com/IJyIEMF.png)
+### 메인 패널 제어
 
-## ✨ Features
+- **패널 위치**: 채팅창의 왼쪽 또는 오른쪽
+- **테마**: 기본 테마 중에서 선택하거나 사용자 지정 테마를 만들 수 있습니다.
+- **메시지 후 자동 업데이트**: 메시지가 전송될 때마다 RPG 데이터를 자동으로 새로 고침합니다.
+- **컨텍스트 메시지**: 업데이트 생성 시 포함할 최근 메시지 수 (별도 생성 모드에서만 적용)
 
-![png](https://i.imgur.com/cVCAby0.png)
+### 표시 옵션
 
-### Core Functionality
+- **사용자 스탯 표시**: 캐릭터 스탯 패널을 표시합니다.
+- **인포 박스 표시**: 장면 정보 패널을 표시합니다.
+- **캐릭터 내적 독백 표시**: AI 캐릭터의 내적 독백을 표시합니다.
 
-- **📊 User Stats Tracker**: Fully customizable stats with visual progress bars, custom status fields, skills section, and dynamic inventory management
-- **🌍 Info Box Dashboard**: Configurable widgets for date, weather, temperature, time, location, and recent events
-- **💭 Present Characters Panel**: Track multiple characters with custom fields, relationship badges, character-specific stats, and internal thoughts
-- **🎭 Floating Thought Bubbles**: Optional thought bubbles positioned next to character avatars in chat
-- **🎲 Classic RPG Stats**: STR, DEX, CON, INT, WIS, CHA attributes with dice roll support
-- **📦 Advanced Inventory System**: Multi-location storage (On Person, Stored locations, Assets) with v2 format
-- **🎯 Character Stats**: Track health, energy, or any custom stats for each present character with color interpolation
-- **📜 Immersive HTML**: Enhance the immersion by including creative HTML/CSS/JS elements in your roleplay
-- **➡️ Plot Progression**: Progress the plot with randomized events or natural progression with a click of a button
-- **🎨 Multiple Themes**: Cyberpunk, Fantasy, Minimal, Dark, Light, and Custom themes
-- **✏️ Live Editing**: Edit all tracker fields directly in the panels with auto-save
-- **💾 Per-Swipe Data Storage**: Each swipe preserves its own tracker data
-- **🎛️ Tracker Configuration**: Customize every aspect of trackers - add/remove stats, fields, widgets, and more
+### 생성 모드
 
-### Smart Features
+#### '메인 생성과 함께' 모드
 
-- **🔄 Swipe Detection**: Automatically handles swipes and maintains correct tracker context
-- **📝 Context-Aware**: Weather, stats, and character states naturally influence the narrative
-- **🎭 Multiple Characters**: Tracks thoughts, relationships, and stats for all present characters
-- **📍 Thought Bubbles in Chat**: Optional floating thought bubbles positioned next to character avatars
-- **🌈 Customizable Colors**: Create your own theme with custom color schemes
-- **📱 Mobile Support**: Responsive design with horizontal scrolling for stats
-- **🔧 Advanced Configuration**: Add custom stats, fields, and widgets through Tracker Settings
-- **🎨 Color Interpolation**: Stats smoothly transition from low to high colors based on values
-- **💬 Multi-line Format**: Clean, structured format for AI generation and parsing
-- **🧹 Auto-cleanup**: Automatically removes placeholder brackets from AI responses
+트래커 데이터는 메인 AI 응답 내에서 생성되며 자동으로 추출됩니다:
 
-### To-Do
+예시:
+```
+사용자: 선술집으로 들어간다
 
-1. Allow users to use a different model for the separate trackers generation
+AI: 트래커 + 전체 롤플레잉 응답
+        ↓ 
+확장 프로그램이 응답에서 트래커 데이터를 추출합니다
+        ↓ 
+사이드바 패널에 표시됩니다
+        ↓ 
+메인 채팅에는 깔끔한 롤플레잉 텍스트만 표시됩니다
 
-## ⚙️ Settings
+장점:
+- 단일 API 호출
+- 더 빠른 응답
+- 더 간단한 설정
 
-### Main Panel Controls
+단점:
+- AI 응답에 트래커 서식이 섞여 있음
+- 롤플레잉 품질에 약간의 영향을 줄 수 있음
+```
+#### '별도 생성' 모드
 
-- **Panel Position**: Left or Right side of the chat
-- **Theme**: Choose from 6 built-in themes or create a custom
-- **Auto-update after messages**: Automatically refresh RPG data after each message
-- **Context Messages**: How many recent messages to include when generating updates (only for Separate generation mode)
+트래커 데이터는 메인 응답 후 별도의 API 호출을 통해 생성됩니다:
 
-### Display Options
+예시:
+```
+사용자: 선술집으로 들어갑니다
 
-- **Show User Stats**: Display the character stats panel
-- **Show Info Box**: Display the scene information panel
-- **Show Character Thoughts**: Display the AI character's internal thoughts
+AI: 순수 롤플레잉 응답 - 트래커 데이터 없음
 
-### Generation Modes
+AI: 트래커 데이터만 포함된 별도의 호출
+        ↓
+확장 프로그램이 컨텍스트와 함께 별도의 요청을 전송
+        ↓
+AI는 트래커 데이터만 생성
+        ↓
+사이드바 패널에 표시
+        ↓
+다음 생성물에 컨텍스트 요약이 반영됨
 
-#### Together Mode
+장점:
+- 깔끔한 롤플레잉 응답
+- 향상된 롤플레잉 품질
+- 컨텍스트 요약으로 몰입감 증대
 
-Tracker data is generated within the main AI response and automatically extracted:
+단점:
+- 추가 API 호출
+- 반응 속도가 약간 느림
+```
 
-Example:
-User: walks into the tavern
+### '외부 API' 모드
 
-AI: Trackers + Full roleplay response
+- **기본 채팅 모델 사용**: 채팅과 동일한 모델을 사용합니다(권장).
+- 사용자 지정 모델 선택
 
-↓ Extension extracts tracker data from the response
+## 📝 사용 방법
 
-↓ Displays in sidebar panels
+### 빠른 시작
 
-↓ Main chat shows clean roleplay text
+1. '확장 프로그램' 탭에서 확장 프로그램을 활성화하세요.
+2. 생성 모드를 선택하세요: '메인 생성' 또는 '별도 생성'
+3. 표시할 패널을 선택하세요 (사용자 통계, 정보 상자, 캐릭터 생각)
+4. 대화를 시작하세요! 트래커가 자동으로 업데이트됩니다.
 
-Pros:
+### 트래커 데이터 편집
 
-- Single API call
-- Faster response
-- Simpler setup
+대부분의 필드는 해당 항목을 클릭하여 편집할 수 있습니다:
 
-Cons:
+- **사용자 통계**: 통계 백분율, 기분 이모티콘, 상태 필드, 스킬, 인벤토리 아이템 또는 퀘스트를 클릭하세요
+- **정보 상자**: 날짜 필드, 날씨, 기온, 시간, 위치 또는 최근 이벤트를 클릭하세요.
+- **현재 등장인물**: 캐릭터 이모티콘, 이름, 사용자 정의 필드, 관계 배지 또는 스탯을 클릭하세요.
+- **생각 풍선**: 편집할 생각 텍스트를 클릭하세요(위치를 유지하기 위해 풍선이 새로 고쳐집니다).
 
-- Tracker formatting mixed in AI response
-- May affect roleplay quality slightly
+### 트래커 설정
 
-#### Separate Mode
+'트래커 설정' 버튼을 통해 다양한 맞춤 설정을 이용할 수 있습니다:
 
-Tracker data is generated in a separate API call after the main response:
+**사용자 통계 설정:**
 
-Example:
-User: walks into the tavern
+- 고유한 이름을 가진 사용자 정의 통계를 추가하거나 제거할 수 있습니다.
+- 상태 섹션(기분 이모티콘 + 사용자 정의 필드)을 설정할 수 있습니다.
+- 사용자 정의 기술 필드를 사용하여 기술 섹션을 설정할 수 있습니다.
+- RPG 속성 표시 여부를 전환할 수 있습니다.
 
-AI: Pure roleplay response - no tracker data
+**정보 상자 설정:**
 
-AI: Separate call with just the tracker data
+- 개별 위젯 활성화/비활성화 (날짜, 날씨, 기온, 시간, 위치, 최근 이벤트)
+- 기온 단위 선택 (섭씨/화씨)
 
-↓ Extension sends a separate request with context
+**등장인물 설정:**
 
-↓ AI generates only tracker data
+- 사용자 정의 등장인물 필드 추가 (외모, 행동, 태도 등)
+- 관계 상태 옵션 설정
+- 등장인물별 통계 추적 활성화
+- 생각 풍선 레이블 및 설명 사용자 정의
+- 모든 필드는 프롬프트에서 동적으로 생성됩니다
 
-↓ Displays in sidebar panels
+### 스와이프 지원
 
-↓ Context summary injected into the next generation
+이 확장 프로그램은 스와이프 기능을 완벽하게 지원합니다:
 
-Pros:
+- 각 스와이프는 고유한 추적 데이터를 저장합니다.
+- 스와이프를 수행하면 해당 스와이프에 대한 데이터가 불러옵니다.
+- 새로운 스와이프가 생성될 때는 스와이프 수행 전 확정된 데이터가 사용됩니다.
+- 사용자의 편집 내용은 스와이프 간에도 유지됩니다.
 
-- Clean roleplay responses
-- Better roleplay quality
-- Contextual summary enhances immersion
+### 수동 업데이트
 
-Cons:
+별도 생성 모드에서는 설정 메뉴의 "RPG 정보 새로 고침" 버튼을 클릭하여 언제든지 RPG 데이터를 새로 고칠 수 있습니다.
 
-- Extra API call
-- Slightly slower
+### 가이드 생성과의 호환성
 
-### Model Selection
+이 확장 프로그램은 "가이드 생성" 프롬프트가 제출될 때(예: 일시적인 `instruct` 프롬프트를 삽입하는 GuidedGenerations 확장 프로그램을 통해) 이를 감지하고, 생성 컨텍스트에 트래커 삽입 지시문(스탯, 정보 상자 및 컨텍스트 프롬프트 요청)을 추가하지 않도록 합니다. 이를 통해 지시문 간의 충돌을 방지하고, 가이드 생성이 사용자가 기대하는 대로 작동하도록 보장합니다.
 
-- **Use main chat model**: Use the same model as your chat (recommended)
-- Custom model selection (coming soon)
+가이드 생성 중에 트래커 프롬프트를 적용하려면, 별도 생성 모드를 통해 업데이트를 실행하거나 다른 확장 프로그램에서 가이드 생성을 일시적으로 비활성화하십시오.
 
-## 📝 How to Use
+RPG Companion 설정(고급 섹션)에 "가이드 생성 중 트래커 및 HTML 삽입 건너뛰기"라는 새로운 설정이 추가되었습니다. 이제 다음 세 가지 모드를 지원합니다:
 
-### Quick Start
+- none: 절대 건너뛰지 않음(평소와 같이 항상 트래커 프롬프트를 삽입, 기본값)
+- impersonation: 흉내 내기(impersonation) 스타일의 가이드 생성이 감지될 때만 건너뛰기
+- guided: 가이드 방식의 `instruct` 또는 `quiet_prompt` 생성이 감지될 때마다 건너뛰기
 
-1. Enable the extension in the Extensions tab
-2. Choose your generation mode: Together or Separate
-3. Select which panels to display (User Stats, Info Box, Character Thoughts)
-4. Start chatting! The tracker updates automatically
+## 🎨 테마
 
-### Editing Tracker Data
+8가지 아름다운 테마 중에서 선택하세요:
 
-You can edit most fields by clicking on them:
+- **사이버펑크**: 네온 핑크와 시안 색상이 어우러진 미래지향적인 분위기
+- **판타지**: 신비로운 미학을 담은 보라색과 금색
+- **미니멀**: 깔끔한 단색 디자인
+- **다크**: 짙은 검은색과 은은한 포인트
+- **라이트**: 밝고 산뜻한 인터페이스
+- 🆕**심플(Light)**: 테마 색상에 따라 변하는 밝은 테마 전용
+- 🆕**심플(Dark)**: 테마 색상에 따라 변하는 어두운 테마 전용
+- **커스텀**: 나만의 색상으로 직접 디자인해 보세요
 
-- **User Stats**: Click on stat percentages, mood emoji, status fields, skills, inventory items, or quests
-- **Info Box**: Click on date fields, weather, temperature, time, location, or recent events
-- **Present Characters**: Click on character emoji, name, custom fields, relationship badge, or stats
-- **Thought Bubbles**: Click on thought text to edit (bubble will refresh to maintain positioning)
+## 🐛 문제 해결
 
-### Tracker Configuration
+### 확장 프로그램이 표시되지 않음
 
-Access comprehensive customization through the Tracker Settings button:
+- 브라우저를 새로 고침하세요
+- SillyTavern을 재시작하세요
+- '확장 프로그램' 탭에서 확장 프로그램이 활성화되어 있는지 확인하세요
 
-**User Stats Configuration:**
+### 트래커가 업데이트되지 않음
 
-- Add/remove custom stats with unique names
-- Configure Status section (mood emoji + custom fields)
-- Configure Skills section with custom skill fields
-- Toggle RPG attributes display
+- '자동 업데이트'가 활성화되어 있는지 확인하세요
+- 테스트를 위해 '수동 업데이트'를 클릭해 보세요
+- AI 백엔드가 정상적으로 응답하는지 확인하세요
+- 콘솔에서 오류 메시지가 있는지 확인하세요
 
-**Info Box Configuration:**
+### 표시 문제
 
-- Enable/disable individual widgets (Date, Weather, Temperature, Time, Location, Recent Events)
-- Choose temperature unit (Celsius/Fahrenheit)
+- 페이지를 새로 고침해 보세요
+- 다른 확장 프로그램과 충돌이 발생하는지 확인하세요
+- CSS가 올바르게 로드되는지 확인하세요
 
-**Present Characters Configuration:**
+### 생각 풍선 위치
 
-- Add custom character fields (appearance, action, demeanor, etc.)
-- Configure relationship status options
-- Enable character-specific stats tracking
-- Customize thought bubble label and description
-- All fields are dynamically generated in prompts
+- 일관된 위치를 유지하기 위해 풍선의 너비는 350px로 고정되어 있습니다
+- 정렬을 유지하기 위해 편집 후 풍선이 새로 고침됩니다
+- 문제가 지속되면 '캐릭터 생각' 표시 기능을 켜고 끄어 보세요
 
-### Swipe Support
+## 📜 라이선스
 
-The extension fully supports swipes:
+이 확장프로그램은 Marinara의 원본 코드를 수정하여 재배포한 버전입니다.
+원작자의 라이선스 조건에 따라 **GNU Affero General Public License v3.0 (AGPL-3.0)** 을 따릅니다.
 
-- Each swipe stores its own tracker data
-- Swiping loads the data for that specific swipe
-- New swipe generation uses the committed data from before the swipe
-- User edits are preserved across swipes
 
-### Manual Update
+## 🙏 크레딧 및 원작자
 
-You can click the "Refresh RPG Info" button in the settings to refresh the RPG data at any time in separate generation mode.
+원작자(SpicyMarinara)에게 후원하려면 아래 링크를 참고하세요.
 
-### Compatibility with Guided Generations
+- [마리나라 엔진](https://github.com/Pasta-Devs/Marinara-Engine)
+- [마리나라의 디스코드](https://discord.com/invite/KdAkTg94ME)
+- [마리나라의 Ko-fi](https://ko-fi.com/marinara_spaghetti)
 
-This extension detects when a "guided generation" prompt is submitted (for example, via the GuidedGenerations extension which injects an ephemeral `instruct` prompt), and will avoid adding its tracker injection instructions (requests for stats, info box, and context prompts) to the generation context. This prevents conflicting instructions and ensures guided generations behave as the user expects.
+## 💡 팁
 
-If you want tracker prompts to apply during a guided generation, run the update via separate generation or temporarily disable guided generation in the other extension.
+1. **컨텍스트 메시지**: 4개의 메시지로 시작하여 필요에 따라 조정하세요. 메시지가 많을수록 컨텍스트는 풍부해지지만 업데이트 속도는 느려집니다.
+2. **성능**: 업데이트 속도가 느리다면 컨텍스트 깊이를 줄이거나 더 빠른 모델을 사용하는 것을 고려해 보세요.
+3. **사용자 지정**: index.js의 프롬프트를 수정하여 자신만의 능력치 카테고리를 추가하거나 형식을 변경할 수 있습니다.
 
-There is a new setting "Skip Tracker & HTML Injections during Guided Generations" in the RPG Companion settings (Advanced section). It now supports three modes:
+## 📋 호환성
 
-- none: never skip (always inject the tracker prompts as usual, default)
-- impersonation: only skip when an impersonation-style guided generation is detected
-- guided: skip whenever a guided `instruct` or `quiet_prompt` generation is detected
-
-## 🎨 Themes
-
-Choose from 6 beautiful themes:
-
-- **Cyberpunk**: Neon pink and cyan with futuristic vibes
-- **Fantasy**: Purple and gold with mystical aesthetics
-- **Minimal**: Clean monochrome design
-- **Dark**: Deep blacks and subtle accents
-- **Light**: Bright and airy interface
-- **Custom**: Create your own with custom colors
-
-## 🛠️ Technical Details
-
-If you ever have an awesome idea to do your own SillyTavern extension, don't.
-
-## 🐛 Troubleshooting
-
-### Extension doesn't appear
-
-- Refresh your browser
-- Restart SillyTavern
-- Ensure it's enabled in the Extensions tab
-
-### Stats not updating
-
-- Check that "Auto-update" is enabled
-- Try clicking "Manual Update" to test
-- Verify your AI backend is responding correctly
-- Check console for error messages
-
-### Display issues
-
-- Try refreshing the page
-- Check if other extensions are conflicting
-- Verify CSS is loading correctly
-
-### Thought bubble positioning
-
-- Bubbles use a fixed 350px width for consistent positioning
-- Bubbles refresh after edits to maintain alignment
-- If issues persist, try toggling the Character Thoughts display
-
-## 📜 License
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
-
-Copyright (C) 2024 marinara_spaghetti
-
-## 💖 Support
-
-If you enjoy this extension, consider supporting development:
-
-- [Join our Discord community](https://discord.com/invite/KdAkTg94ME)
-- [Support on Ko-fi](https://ko-fi.com/marinara_spaghetti)
-
-## 🙏 Credits
-
-**Contributors:**
-SpicyMarinara, Paperboygold, Munimunigamer, Subarashimo, Lilminzyu, Claude, IDeathByte, Chungchandev, Joenunezb, Amauragis, Tomt610, and Jakstein.
-
-## 🚀 Planned Features
-
-- Support for selecting a different model for RPG updates
-
-## 💡 Tips
-
-1. **Context Messages**: Start with 4 messages and adjust based on your needs. More messages = better context, but slower updates
-2. **Performance**: If updates are slow, consider reducing the context depth or using a faster model
-3. **Customization**: You can modify the prompts in index.js to add your own stat categories or change the format
-
-## 📋 Compatibility
-
-- Requires SillyTavern 1.11.0 or higher
-- Works with all AI backends (OpenAI, Claude, KoboldAI, etc.)
-
----
-
-Made with ❤️ by Marinara
-
-PS I'm looking for a job or a sponsor to fund my custom AI frontend, contact me if interested:
-[mgrabower97@gmail.com](mailto:mgrabower97@gmail.com)
+- SillyTavern 1.11.0 이상이 필요합니다.
+- 모든 AI 백엔드(OpenAI, Claude, KoboldAI 등)와 호환됩니다.
