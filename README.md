@@ -1,4 +1,3 @@
-# 크레딧
 이 확장 프로그램은 Marinara의 [rpg-companion-sillytavern](https://github.com/SpicyMarinara/rpg-companion-sillytavern) 포크 버전입니다.
 
 # SillyTavern 확장 - RPG 컴패니언 포크
